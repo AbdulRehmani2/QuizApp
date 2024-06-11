@@ -1,4 +1,16 @@
-function Result() {
+import { useEffect } from "react"
+
+type Props = {
+    correctAns: number,
+    totalAns: number
+}
+
+
+function Result({correctAns, totalAns}: Props) {
+
+    useEffect(() => {
+        setProgress(correctAns)
+    }, [])
 
     const setProgress = (prog:number) =>
     {
@@ -8,16 +20,16 @@ function Result() {
     }
     return (
         <div className="question-result-container">
-            <h1>Better luck next time</h1>
+            {correctAns/totalAns*100 > 50 ? <h1>Better luck next time.</h1> : <h1>Congratulations on your success!</h1>}
             <div className="result-show">
                 <span>Total Questions</span>
-                <span>35</span>
+                <span>{totalAns}</span>
             </div>
             <div className="result-show">
                 <span>Correct Questions</span>
-                <span>10</span>
+                <span>{correctAns}</span>
             </div>
-            <span>{`${Math.ceil(10*100 / 35)}%`}</span>
+            <span>{`${Math.ceil(correctAns*100 / totalAns)}%`}</span>
             <div className="result-loader-container">
                 <div className="result-bar"></div>
             </div>

@@ -28,7 +28,7 @@ function Question({name, quesNo, time, question, options}: QuestionProp) {
                 <h1>Javascript Quiz</h1>
                 <QuestionBar name={name} quesNo={quesNo} time={time}></QuestionBar>
                 {/* <QuestionChoice question={question} options={options}></QuestionChoice> */}
-                <Result></Result>
+                <Result totalAns={35} correctAns={10}></Result>
             </div>
         </div>)
 }
