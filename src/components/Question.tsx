@@ -1,4 +1,5 @@
 import QuestionBar from "./QuestionBar";
+import QuestionChoice from "./QuestionChoice";
 
 const defaultProps = {
     name: "Name",
@@ -16,36 +17,18 @@ type QuestionProp = {
     options: string[]
 } & typeof defaultProps;
 
-function Question({name, quesNo, time, question, options}: QuestionProp) {
 
-    let makeActive = (e:React.MouseEvent<HTMLUListElement>) => {
-        document.querySelectorAll(".question-choice-list>li").forEach((element) => {
-            const liElement = element as HTMLElement
-            liElement.style.backgroundColor = "#a9a9a9"
-            if(e.target == liElement)
-            {
-                liElement.style.backgroundColor = "rgb(35, 193, 35)"
-            }
-        })
-    }
+
+function Question({name, quesNo, time, question, options}: QuestionProp) {
 
     return (
         <div className="question-container">
             <div className="question-form-container">
                 <h1>Javascript Quiz</h1>
                 <QuestionBar name={name} quesNo={quesNo} time={time}></QuestionBar>
-                <div className="question-choice-container">
-                    <p>{question}</p>
-                    <ul className="question-choice-list" onClick={makeActive}>
-                        {options.map((element:string) => <li>{element}</li>)}
-                    </ul>
-                    <div className="question-submit-container">
-                        <button className="question-submit-button">Submit</button>
-                    </div>
-                </div>
+                {/* <QuestionChoice question={question} options={options}></QuestionChoice> */}
             </div>
-        </div>
-    )
+        </div>)
 }
 
 export default Question
