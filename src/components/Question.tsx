@@ -1,11 +1,30 @@
-function Question() {
+import QuestionBar from "./QuestionBar";
+
+const defaultProps = {
+    name: "Name",
+    quesNo: "Question",
+    time: "Time",
+    question: "Statement",
+    options: ["Option 1", "Option 2", "Option 3", "Option 4"]
+}
+
+type QuestionProp = {
+    name: string,
+    quesNo: string,
+    time: string,
+    question: string,
+    options: string[]
+} & typeof defaultProps;
+
+function Question({name, quesNo, time, question, options}: QuestionProp) {
 
     let makeActive = (e:React.MouseEvent<HTMLUListElement>) => {
         document.querySelectorAll(".question-choice-list>li").forEach((element) => {
-            element.style.backgroundColor = "#a9a9a9"
-            if(e.target == element)
+            const liElement = element as HTMLElement
+            liElement.style.backgroundColor = "#a9a9a9"
+            if(e.target == liElement)
             {
-                element.style.backgroundColor = "rgb(35, 193, 35)"
+                liElement.style.backgroundColor = "rgb(35, 193, 35)"
             }
         })
     }
@@ -14,20 +33,15 @@ function Question() {
         <div className="question-container">
             <div className="question-form-container">
                 <h1>Javascript Quiz</h1>
-                <div className="question-data-container">
-                    <p>Name</p>
-                    <p>Question</p>
-                    <p>Time</p>
-                </div>
+                <QuestionBar name={name} quesNo={quesNo} time={time}></QuestionBar>
                 <div className="question-choice-container">
-                    <p>Statement</p>
+                    <p>{question}</p>
                     <ul className="question-choice-list" onClick={makeActive}>
-                        <li>Option 1</li>
-                        <li>Option 2</li>
-                        <li>Option 3</li>
-                        <li>Option 4</li>
+                        {options.map((element:string) => <li>{element}</li>)}
                     </ul>
-                    <button>Submit</button>
+                    <div className="question-submit-container">
+                        <button className="question-submit-button">Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
