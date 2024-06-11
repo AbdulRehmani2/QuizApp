@@ -130,3 +130,39 @@ button:active{
   display: flex;
   justify-content: end;
 }
+
+/* Result */
+
+.result-loader-container {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  background-color: #1b1a1a;
+  margin: 2rem 0rem;
+}
+
+.result-bar{
+  background-color: rgb(9, 188, 9);
+  height: 0.5rem;
+  border-radius: 2px;
+  box-shadow: rgb(9, 188, 9) 0px 2px 29px 0px;
+}
+
+.question-result-container{
+  background-color: #2f2e2e;
+  margin: 0.4rem 0rem;
+  /* padding: 0.4rem 0.5rem; */
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result-show{
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin: 0.5rem 0rem;
+  border-top: 2px solid white;
+  padding: 0rem 0.5rem;
+}
