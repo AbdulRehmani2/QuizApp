@@ -109,7 +109,7 @@ function Question({name}: QuestionProp) {
         <div className="question-container">
             <div className="question-form-container">
                 <h1>Javascript Quiz</h1>
-                <QuestionBar name={name} quesNo={`${questions[question].id + 1} | ${questions.length + 1}`} time={"2"}></QuestionBar>
+                <QuestionBar name={name} quesNo={`${questions[question].id} | ${questions.length}`} time={"2"}></QuestionBar>
                 {!isFinished && <QuestionChoice setSelectedIndex={setSelectedAns} question={questions[question].question} options={questions[question].options}></QuestionChoice>}
                 {isFinished && <Result correctAns={correctAns} totalAns={questions.length}></Result>}
                 {!isFinished && <div className="question-submit-container">

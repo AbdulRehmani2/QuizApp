@@ -18,12 +18,12 @@ function Result({correctAns, totalAns}: Props) {
     const setProgress = (prog:number) =>
     {
         const element = document.querySelector('.result-bar') as HTMLElement
-        console.log(element);
-        element.style.setProperty('width', `${(prog/35) * 100}%`)
+        element.style.setProperty('width', `${(prog/totalAns) * 100}%`)
     }
+
     return (
         <div className="question-result-container">
-            {correctAns/totalAns*100 > 50 ? <h1>Better luck next time.</h1> : <h1>Congratulations on your success!</h1>}
+            {correctAns/totalAns*100 < 50 ? <h1>Better luck next time.</h1> : <h1>Congratulations on your success!</h1>}
             <div className="result-show">
                 <span>Total Questions</span>
                 <span>{totalAns}</span>
