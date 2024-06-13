@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 type Props = {
     correctAns: number,
@@ -11,6 +12,8 @@ function Result({correctAns, totalAns}: Props) {
     useEffect(() => {
         setProgress(correctAns)
     }, [])
+
+    const navigate = useNavigate();
 
     const setProgress = (prog:number) =>
     {
@@ -33,7 +36,7 @@ function Result({correctAns, totalAns}: Props) {
             <div className="result-loader-container">
                 <div className="result-bar"></div>
             </div>
-            <button onClick={() => setProgress(10)}>Go Home</button>
+            <button onClick={() => navigate("/")}>Go Home</button>
         </div>
   )
 }

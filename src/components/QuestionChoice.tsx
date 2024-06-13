@@ -1,12 +1,15 @@
 type Prop = {
   question: string,
-  options: string[]
+  options: string[],
+  setCorrectAns: React.Dispatch<React.SetStateAction<number>>,
+  correctIdx: number
 }
 
-function QuestionChoice({question, options}: Prop)
+function QuestionChoice({question, options, setCorrectAns, correctIdx}: Prop)
 {
+
   	let makeActive = (e:React.MouseEvent<HTMLUListElement>) => {
-    	document.querySelectorAll(".question-choice-list>li").forEach((element) => {
+    	document.querySelectorAll(".question-choice-list>li").forEach((element, index) => {
     	    const liElement = element as HTMLElement
     	    liElement.style.backgroundColor = "#a9a9a9"
     	    if(e.target == liElement)
@@ -21,9 +24,6 @@ function QuestionChoice({question, options}: Prop)
         <ul className="question-choice-list" onClick={makeActive}>
             {options.map((element:string) => <li>{element}</li>)}
         </ul>
-        <div className="question-submit-container">
-            <button className="question-submit-button">Submit</button>
-        </div>
     </div>
     )
 }

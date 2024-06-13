@@ -1,13 +1,22 @@
 import './App.css'
-// import TestMenu from './components/TestMenu'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useState } from 'react'
+import TestMenu from './components/TestMenu'
 import Question from './components/Question'
 
 function App() {
 
+	const [userName, setUserName] = useState('Anon');
+
   return (
-    <>
-      <Question name='AbdulRehman' quesNo='1 | 31' question='What is the music of life?' time='30:00' options={["Silence", "Drums", "Flute", "Guitar"]}></Question>
-    </>
+	<>
+	  <BrowserRouter>
+			<Routes>
+		  		<Route path='/' element={<TestMenu setUserName={setUserName}></TestMenu>}></Route>	
+				<Route path='/quiz' element={<Question name={userName}></Question>}></Route>
+			</Routes>
+	  </BrowserRouter>
+	</>
   )
 }
 
