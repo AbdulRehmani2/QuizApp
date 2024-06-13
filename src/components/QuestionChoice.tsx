@@ -1,11 +1,10 @@
 type Prop = {
   question: string,
   options: string[],
-  setCorrectAns: React.Dispatch<React.SetStateAction<number>>,
-  correctIdx: number
+  setSelectedIndex: React.Dispatch<React.SetStateAction<number>>,
 }
 
-function QuestionChoice({question, options, setCorrectAns, correctIdx}: Prop)
+function QuestionChoice({question, options, setSelectedIndex}: Prop)
 {
 
   	let makeActive = (e:React.MouseEvent<HTMLUListElement>) => {
@@ -15,6 +14,8 @@ function QuestionChoice({question, options, setCorrectAns, correctIdx}: Prop)
     	    if(e.target == liElement)
     	    {
     	        liElement.style.backgroundColor = "rgb(35, 193, 35)"
+                setSelectedIndex(index)
+                console.log(index);
     	    }
     	})
   	}

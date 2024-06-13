@@ -93,18 +93,28 @@ function Question({name}: QuestionProp) {
 
     const [question, setQuestion] = useState(0);
 	const [correctAns, setCorrectAns] = useState(0);
+    const [selectedAns, setSelectedAns] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
+
+    function changeQuestion()
+    {
+        if(selectedAns == questions[question].correct)
+        {
+            setCorrectAns((prev) => prev + 1)
+        }
+        setQuestion((prev) => prev + 1)
+    }
 
     return (
         <div className="question-container">
             <div className="question-form-container">
                 <h1>Javascript Quiz</h1>
                 <QuestionBar name={name} quesNo={`${questions[question].id + 1} | ${questions.length + 1}`} time={"2"}></QuestionBar>
-                {!isFinished && <QuestionChoice setCorrectAns={setCorrectAns} correctIdx={questions[question].correct} question={questions[question].question} options={questions[question].options}></QuestionChoice>}
+                {!isFinished && <QuestionChoice setSelectedIndex={setSelectedAns} question={questions[question].question} options={questions[question].options}></QuestionChoice>}
                 {isFinished && <Result correctAns={correctAns} totalAns={questions.length}></Result>}
                 {!isFinished && <div className="question-submit-container">
                     {question == questions.length - 1 && <button className="question-submit-button" onClick={() => setIsFinished(true)}>Submit</button>}
-                    {question != questions.length - 1 && <button className="question-submit-button" onClick={() => setQuestion(question + 1)}>Next</button>}
+                    {question != questions.length - 1 && <button className="question-submit-button" onClick={changeQuestion}>Next</button>}
                 </div>}
             </div>
         </div>)
