@@ -99,7 +99,6 @@ function Question({name}: QuestionProp) {
 	useEffect(() => {
 		const testCounter = setInterval(() => {
 			setTimer((prev) => {
-				console.log("hello");
 				if(prev > 0)
 				{
 					return prev - 1
