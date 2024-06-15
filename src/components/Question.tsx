@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-
 import QuestionBar from "./QuestionBar";
 import QuestionChoice from "./QuestionChoice";
 import Result from "./Result";
-import { useFetcher } from "react-router-dom";
 
 type QuestionProp = {
     name: string
@@ -97,11 +95,11 @@ function Question({name}: QuestionProp) {
     const [selectedAns, setSelectedAns] = useState(-1);
     const [isFinished, setIsFinished] = useState(false);
 	const [timer, setTimer] = useState(600);
-	let testCounter:NodeJS.Timeout;
 
 	useEffect(() => {
-		testCounter = setInterval(() => {
+		const testCounter = setInterval(() => {
 			setTimer((prev) => {
+				console.log("hello");
 				if(prev > 0)
 				{
 					return prev - 1
@@ -114,7 +112,7 @@ function Question({name}: QuestionProp) {
 				}
 			});
 		}, 1000)
-		return () => clearInterval(testCounter)
+		return () => {clearInterval(testCounter)}
 	}, [])
 
     function changeQuestion()
@@ -126,8 +124,6 @@ function Question({name}: QuestionProp) {
         setQuestion((prev) => prev + 1)
     }
 
-
-
     return (
         <div className="question-container">
             <div className="question-form-container">
@@ -136,7 +132,7 @@ function Question({name}: QuestionProp) {
                 {!isFinished && <QuestionChoice setSelectedIndex={setSelectedAns} question={questions[question].question} options={questions[question].options}></QuestionChoice>}
                 {isFinished && <Result correctAns={correctAns} totalAns={questions.length}></Result>}
                 {!isFinished && <div className="question-submit-container">
-                    {question == questions.length - 1 && <button className="question-submit-button" onClick={() => setIsFinished(true)}>Submit</button>}
+                    {question == questions.length - 1 && <button className="question-submit-button" onClick={() => {setIsFinished(true); setTimer(0)}}>Submit</button>}
                     {question != questions.length - 1 && <button className="question-submit-button" onClick={changeQuestion}>Next</button>}
                 </div>}
             </div>
