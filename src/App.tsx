@@ -12,7 +12,7 @@ function App() {
 	<>
 	  <BrowserRouter>
 			<Routes>
-		  		<Route path='/' element={<TestMenu setUserName={setUserName}></TestMenu>}></Route>	
+		  		<Route path='/' element={<TestMenu setUserName={setUserName}></TestMenu>}></Route>
 				<Route path='/quiz' element={<Question name={userName}></Question>}></Route>
 			</Routes>
 	  </BrowserRouter>

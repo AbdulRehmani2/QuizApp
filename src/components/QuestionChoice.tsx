@@ -1,3 +1,5 @@
+// import { useEffect } from "react"
+
 type Prop = {
   question: string,
   options: string[],
@@ -15,7 +17,6 @@ function QuestionChoice({question, options, setSelectedIndex}: Prop)
     	    {
     	        liElement.style.backgroundColor = "rgb(35, 193, 35)"
                 setSelectedIndex(index)
-                console.log(index);
     	    }
     	})
   	}

@@ -14,6 +14,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body, html{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 input{
   font-size: large;
   padding: 0.6rem 0.5rem;
@@ -38,6 +45,7 @@ button{
 
 button:hover{
   background-color: rgb(3, 135, 3);
+  cursor: pointer;
 }
 
 button:active{
@@ -45,6 +53,11 @@ button:active{
 }
 
 /* TestMenu */
+.textmenu-container{
+  margin: auto auto;
+}
+
+
 .testmenu-container, .testmenu-form-container{
   display: flex;
   align-items: center;
@@ -114,8 +127,8 @@ button:active{
   color: black;
 }
 
-.question-choice-list>li:hover{
-  background-color: #828282;
+.question-choice-list>li{
+  cursor: pointer;
 }
 
 .question-form-container>h1{

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import QuestionBar from "./QuestionBar";
 import QuestionChoice from "./QuestionChoice";
 import Result from "./Result";
+import { useFetcher } from "react-router-dom";
 
 type QuestionProp = {
     name: string
@@ -93,8 +94,28 @@ function Question({name}: QuestionProp) {
 
     const [question, setQuestion] = useState(0);
 	const [correctAns, setCorrectAns] = useState(0);
-    const [selectedAns, setSelectedAns] = useState(0);
+    const [selectedAns, setSelectedAns] = useState(-1);
     const [isFinished, setIsFinished] = useState(false);
+	const [timer, setTimer] = useState(600);
+	let testCounter:NodeJS.Timeout;
+
+	useEffect(() => {
+		testCounter = setInterval(() => {
+			setTimer((prev) => {
+				if(prev > 0)
+				{
+					return prev - 1
+				}
+				else
+				{
+					setIsFinished(true)
+					clearInterval(testCounter)
+					return 0;
+				}
+			});
+		}, 1000)
+		return () => clearInterval(testCounter)
+	}, [])
 
     function changeQuestion()
     {
@@ -105,11 +126,13 @@ function Question({name}: QuestionProp) {
         setQuestion((prev) => prev + 1)
     }
 
+
+
     return (
         <div className="question-container">
             <div className="question-form-container">
                 <h1>Javascript Quiz</h1>
-                <QuestionBar name={name} quesNo={`${questions[question].id} | ${questions.length}`} time={"2"}></QuestionBar>
+                <QuestionBar name={name} quesNo={`${questions[question].id} | ${questions.length}`} time={`${Math.floor(timer / 60) < 10 ? `0${Math.floor(timer / 60)}`: Math.floor(timer / 60)}:${(timer % 60) < 10 ? `0${(timer % 60)}`: (timer % 60)}`}></QuestionBar>
                 {!isFinished && <QuestionChoice setSelectedIndex={setSelectedAns} question={questions[question].question} options={questions[question].options}></QuestionChoice>}
                 {isFinished && <Result correctAns={correctAns} totalAns={questions.length}></Result>}
                 {!isFinished && <div className="question-submit-container">

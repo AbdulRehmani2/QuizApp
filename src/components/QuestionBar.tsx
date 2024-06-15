@@ -6,6 +6,7 @@ type Props = {
 
 
 function QuestionBar({name, quesNo, time}: Props) {
+  
   return (
     <div className="question-data-container">
         <span>{quesNo}</span>
